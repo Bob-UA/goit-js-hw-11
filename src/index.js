@@ -1,17 +1,21 @@
 import Notiflix from 'notiflix';
 import axios from 'axios';
+import PictureApiService from './partials/js/components/picture-service'
+
 const gallery = document.querySelector('.gallery');
 const searchForm = document.querySelector('.search-form');
+const loadMoreBtn = document.querySelector('.load_more');
+const pictureApiService = new PictureApiService();
 
 
-const BASE_URL = `https://pixabay.com/api/?key=36665429-419efb0f167e76c277ad1e233&image_type=photo&orientation=horizontal&safesearch=true&q=`;
+gallery.style = "display:flex";
 
-async function fetchImages(searchName){
-    const images = await axios.get(`${BASE_URL}${searchName}`);
-    const smallImage = images.data.hits;
-    for (let i = 0; i < smallImage.length; i++) {
-        const url = smallImage[i];
-        const markup = `
+
+
+function appendImagesMarkup(element) {
+  for (let i = 0; i < element.length; i++) {
+    const url = element[i];
+    const markup = `
         <div>
         <img src="${url.webformatURL}" alt="Looking for a ${searchForm}..." width= 300px>
         <table style="text-align:center","justifyContent:center">
@@ -29,19 +33,20 @@ async function fetchImages(searchName){
         </tr>
         </table>
         </div>`;
-        appendImagesMarkup(markup);
-    }
-}
-
-function appendImagesMarkup(markup) {
     gallery.insertAdjacentHTML('beforeend', markup);
+  }
 }
 
 function onSearch(e) {
   e.preventDefault();
-  const searchQuery = e.target.elements.searchQuery.value;
-  fetchImages(searchQuery);
+  pictureApiService.query = e.target.elements.searchQuery.value;
+  pictureApiService.fetchArticles();
 }
 
+function onLoadMore(e) {
+  // pictureApiService.query = e.target.elements.searchQuery.value;
+  pictureApiService.fetchArticles();
+}
 
+loadMoreBtn.addEventListener('click', onLoadMore)
 searchForm.addEventListener('submit', onSearch);
