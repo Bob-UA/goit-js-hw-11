@@ -1,0 +1,33 @@
+import axios from 'axios';
+export default class PictureApiService {
+  constructor() {
+    this.searchQuery = '';
+    this.page = 1;
+  }
+
+  async fetchArticles() {
+    const BASE_URL = `https://pixabay.com/api/?key=36665429-419efb0f167e76c277ad1e233&image_type=photo&orientation=horizontal&safesearch=true&q=${this.searchQuery}&pageSize=20&page=${this.page}`;
+    const images = await axios.get(`${BASE_URL}`);
+    const data = images.data.hits;
+    this.incrementPage(data);
+  }
+
+  incrementPage(data) {
+    if (data) {
+      this.page += 1;
+    }
+    }
+    
+  
+    resetPage() {
+        this.page = 1;
+    }
+
+  get query() {
+    return this.searchQuery;
+  }
+
+  set query(newQuery) {
+    this.searchQuery = newQuery;
+  }
+}
