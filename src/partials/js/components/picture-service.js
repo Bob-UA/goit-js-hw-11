@@ -10,6 +10,7 @@ export default class PictureApiService {
     const images = await axios.get(`${BASE_URL}`);
     const data = images.data.hits;
     this.incrementPage(data);
+    return data;
   }
 
   incrementPage(data) {
