@@ -1,7 +1,8 @@
+// import imageCardTpl from './templates/image-card.hbs'
 import Notiflix from 'notiflix';
-import axios from 'axios';
 import PictureApiService from './partials/js/components/picture-service'
 
+// console.log(imageCardTpl);
 const gallery = document.querySelector('.gallery');
 const searchForm = document.querySelector('.search-form');
 const loadMoreBtn = document.querySelector('.load_more');
@@ -16,8 +17,8 @@ function appendImagesMarkup(element) {
   for (let i = 0; i < element.length; i++) {
     const url = element[i];
     const markup = `
-        <div>
-        <img src="${url.webformatURL}" alt="Looking for a ${searchForm}..." width= 300px>
+            <div>
+        <img src="${url.webformatURL}" alt="Looking for a pictures..." width= 300px>
         <table style="text-align:center","justifyContent:center">
         <tr>
             <th>Likes</th>
@@ -26,10 +27,10 @@ function appendImagesMarkup(element) {
             <th>Downloads</th>
         </tr>
         <tr>
-            <td>${url.likes}</td>
-            <td>${url.views}</td>
-            <td>${url.comments}</td>
-            <td>${url.downloads}</td>
+            <td>"${url.likes}"</td>
+            <td>"${url.views}"</td>
+            <td>"${url.comments}"</td>
+            <td>"${url.downloads}"</td>
         </tr>
         </table>
         </div>`;
@@ -39,12 +40,14 @@ function appendImagesMarkup(element) {
 
 function onSearch(e) {
   e.preventDefault();
-  pictureApiService.query = e.target.elements.searchQuery.value;
+  pictureApiService.query = e.target.elements.
+  searchQuery.value;
+  pictureApiService.resetPage();
   pictureApiService.fetchArticles();
+
 }
 
-function onLoadMore(e) {
-  // pictureApiService.query = e.target.elements.searchQuery.value;
+function onLoadMore() {
   pictureApiService.fetchArticles();
 }
 
