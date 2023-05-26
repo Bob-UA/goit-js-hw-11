@@ -1,5 +1,29 @@
-.gallery{
+
+ul{
+    list-style: none;
+}
+
+.container{
     width: 1200px;
     margin-left: auto;
     margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.gallery-list{
+display: flex;
+flex-wrap: wrap;
+padding: -15px;
+}
+
+.search-form{
+
+}
+
+.is-hidden{
+    display: none;
 }

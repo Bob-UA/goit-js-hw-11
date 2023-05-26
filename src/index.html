@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="./main.css" />
   </head>
   <body>
-<form class="search-form" id="search-form">
+<div class="container">
+  <form class="search-form" id="search-form">
   <input
     type="text"
     name="searchQuery"
@@ -17,9 +18,13 @@
   <button type="submit">Search</button>
 </form>
 <div class="gallery">
+  <ul class="gallery-list">
+
+  </ul>
 </div>
 <div>
-  <button type="button" class="load_more">LOAD MORE</button>
+  <button type="button" class="load_more" data-action="load-more"><span class="spinner-border spinner spinner-border-sm is-hiden" role="status" aria-hidden="true"></span><span class="label">LOAD MORE</span></button>
+</div>
 </div>
     <script type="module" src="./index.js"></script>
   </body>
