@@ -36,15 +36,16 @@ function appendImagesMarkup(element) {
 
 function onSearch(e) {
   e.preventDefault();
+  clearGallery();
 
   pictureApiService.query = e.target.elements.
     searchQuery.value;
   if (pictureApiService.query.trim() === '') {
+      loadMoreBtn.hide();
     return Notiflix.Notify.failure('Input field cannot be empty!');
   }
   loadMoreBtn.show();
   pictureApiService.resetPage();
-  clearGallery();
   fetchPictures();
 
 }
@@ -66,11 +67,6 @@ function fetchPictures() {
     );
 }
 
-function response(pictures) {
-  if (pictures === 0) {
-    return Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
-  }
-}
 
 function clearGallery() {
   refs.galleryList.innerHTML = "";
