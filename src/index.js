@@ -1,6 +1,4 @@
 import Notiflix from 'notiflix';
-// import SimpleLightbox from 'simplelightbox';
-// import 'simplelightbox/dist/simple-lightbox.min.css';
 import template from './templates/image-card.js';
 import PictureApiService from './partials/js/components/picture-service'
 import LoadMoreBtn from './partials/js/components/load-more-btn.js'
@@ -80,6 +78,3 @@ function clearGallery() {
 
 loadMoreBtn.refs.button.addEventListener('click', fetchPictures);
 refs.searchForm.addEventListener('submit', onSearch);
-
-
-// let gal = new SimpleLightbox('.gallery a');
