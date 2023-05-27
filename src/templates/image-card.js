@@ -1,6 +1,6 @@
 function template(url) {
   return `<div class="gallery__item">
-    <img class="gallery__image" src="${url.webformatURL}" alt="${url.tags}" loading="lazy" width=300px/>
+    <img class="gallery__image" src="${url.webformatURL}" alt="${url.tags}" loading="lazy" width="250" height="150"/>
     <div class="info">
       <p class="info-item">
         <b>Likes</b>${url.likes}

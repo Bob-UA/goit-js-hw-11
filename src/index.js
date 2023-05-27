@@ -41,32 +41,47 @@ function onSearch(e) {
   pictureApiService.query = e.target.elements.
     searchQuery.value;
   if (pictureApiService.query.trim() === '') {
-      loadMoreBtn.hide();
-    return Notiflix.Notify.failure('Input field cannot be empty!');
+    emptyInputFieldNotify();
+    return;
   }
   loadMoreBtn.show();
   pictureApiService.resetPage();
   fetchPictures();
-
 }
 
-
 function fetchPictures() {
+  
     loadMoreBtn.disable();
   pictureApiService
     .fetchPictures()
     .then(pictures => {
-      appendImagesMarkup(pictures);
+      appendImagesMarkup(pictures), successNotify();
     })
-    .catch(error =>
-        {if (error.response.data === `[ERROR 400] "page" is out of valid range.`) {  loadMoreBtn.enable();
+    .catch(error => errorNotify(error.response.data));
+}
+
+function emptyInputFieldNotify() {
+      loadMoreBtn.hide();
+      return Notiflix.Notify.failure('Input field cannot be empty!');
+}
+
+function errorNotify(error) {
+        {if (error === `[ERROR 400] "page" is out of valid range.`) {  loadMoreBtn.enable();
           return Notiflix.Notify.failure(
             "We're sorry, but you've reached the end of search results."
           );
-        }}        
-    );
+        }  else {return Notiflix.Notify.failure(
+          "Oops, something went wrong =("
+        )}} 
 }
 
+function successNotify() {
+  if (pictureApiService.page === 2 && pictureApiService.totalHits > 0) {
+    return Notiflix.Notify.success(
+      `Hooray! We found ${pictureApiService.totalHits} images.`
+    );
+  }
+}
 
 function clearGallery() {
   refs.galleryList.innerHTML = "";

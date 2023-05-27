@@ -3,7 +3,9 @@ export default class PictureApiService {
   constructor() {
     this.searchQuery = '';
     this.page = 1;
+    this.totalHits = 0;
   }
+
 
 
   async fetchPictures() {
@@ -12,15 +14,20 @@ export default class PictureApiService {
     
     const data = images.data.hits;
     this.incrementPage(data);
+    this.totalHitsResponse(images.data.totalHits);
     return data;
   }
 
   incrementPage(data) {
     if (data) {
-      this.page += 1;
+      return this.page += 1;
     }
     }
     
+   totalHitsResponse(value) {
+    return this.totalHits = value;
+    }
+
   
     resetPage() {
         this.page = 1;
@@ -33,4 +40,6 @@ export default class PictureApiService {
   set query(newQuery) {
     this.searchQuery = newQuery;
   }
+
+  
 }
