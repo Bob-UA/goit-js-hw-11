@@ -5,6 +5,7 @@ export default class PictureApiService {
     this.page = 1;
   }
 
+  
   async fetchPictures() {
     const BASE_URL = `https://pixabay.com/api/?key=36665429-419efb0f167e76c277ad1e233&image_type=photo&orientation=horizontal&safesearch=true&q=${this.searchQuery}&per_page=40&page=${this.page}`;
     const images = await axios.get(`${BASE_URL}`);
