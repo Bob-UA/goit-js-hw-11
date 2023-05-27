@@ -39,7 +39,7 @@ function onSearch(e) {
 
   pictureApiService.query = e.target.elements.
     searchQuery.value;
-  if (pictureApiService.query==="") {
+  if (pictureApiService.query.trim() === '') {
     return Notiflix.Notify.failure('Input field cannot be empty!');
   }
   loadMoreBtn.show();
