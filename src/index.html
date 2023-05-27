@@ -3,28 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page title</title>
+    <title>Best pictures</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Raleway:wght@800&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css">
     <link rel="stylesheet" href="./main.css" />
   </head>
   <body>
-<div class="container">
-  <form class="search-form" id="search-form">
+    <div class="form-container">
+    <form class="search-form" id="search-form">
   <input
     type="text"
     name="searchQuery"
     autocomplete="off"
     placeholder="Search images..."
   />
-  <button type="submit">Search</button>
+  <button type="submit" class="button">Search</button>
 </form>
-<div class="gallery">
-  <ul class="gallery-list">
-
-  </ul>
 </div>
-<div>
-  <button type="button" class="load_more" data-action="load-more"><span class="spinner-border spinner spinner-border-sm is-hiden" role="status" aria-hidden="true"></span><span class="label">LOAD MORE</span></button>
+<div class="gallery container">
+  <!-- Картки зображень -->
 </div>
+<div class="load-more-btn-container">
+  <button type="button" class="load_more button" data-action="load-more"><span class="spinner-border spinner spinner-border-sm is-hiden" role="status" aria-hidden="true"></span><span class="label">Load more</span></button>
 </div>
     <script type="module" src="./index.js"></script>
   </body>

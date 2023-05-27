@@ -1,17 +1,15 @@
 import Notiflix from 'notiflix';
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
+// import SimpleLightbox from 'simplelightbox';
+// import 'simplelightbox/dist/simple-lightbox.min.css';
 import template from './templates/image-card.js';
 import PictureApiService from './partials/js/components/picture-service'
 import LoadMoreBtn from './partials/js/components/load-more-btn.js'
 
 
 const refs = {
-galleryList: document.querySelector('.gallery-list'),
+galleryList: document.querySelector('.gallery'),
 searchForm: document.querySelector('.search-form'),
-// loadMoreBtn: document.querySelector('.load_more'),
 }
-let gal = new SimpleLightbox('.gallery a');
 
 
 const loadMoreBtn = new LoadMoreBtn({
@@ -19,9 +17,7 @@ const loadMoreBtn = new LoadMoreBtn({
   hidden: true,
 });
 const pictureApiService = new PictureApiService();
-console.log(loadMoreBtn);
 
-// gallery.style = "display:flex";
 
 
 
@@ -58,9 +54,18 @@ function onSearch(e) {
 
 function fetchPictures() {
     loadMoreBtn.disable();
-  pictureApiService.fetchPictures().then(pictures => {
-    appendImagesMarkup(pictures);
-  });
+  pictureApiService
+    .fetchPictures()
+    .then(pictures => {
+      appendImagesMarkup(pictures);
+    })
+    .catch(error =>
+        {if (error.response.data === `[ERROR 400] "page" is out of valid range.`) {  loadMoreBtn.enable();
+          return Notiflix.Notify.failure(
+            "We're sorry, but you've reached the end of search results."
+          );
+        }}        
+    );
 }
 
 function response(pictures) {
@@ -75,3 +80,6 @@ function clearGallery() {
 
 loadMoreBtn.refs.button.addEventListener('click', fetchPictures);
 refs.searchForm.addEventListener('submit', onSearch);
+
+
+// let gal = new SimpleLightbox('.gallery a');

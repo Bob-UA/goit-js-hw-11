@@ -1,22 +1,20 @@
-function template(url){
-  return `<li style="padding:15px">
-  <a class="gallery__link" href="${url.largeImageURL}">
-  <img src="${url.webformatURL}" alt="Looking for a pictures..." width= 300px>
-  <table style="text-align:center">
-  <tr style="max-width:100%">
-      <th>Likes</th>
-      <th>Views</th>
-      <th>Comments</th>
-      <th>Downloads</th>
-  </tr>
-  <tr>
-      <td>"${url.likes}"</td>
-      <td>"${url.views}"</td>
-      <td>"${url.comments}"</td>
-      <td>"${url.downloads}"</td>
-  </tr>
-  </table>
-  </li>`;
+function template(url) {
+  return `<div class="gallery__item">
+    <img class="gallery__image" src="${url.webformatURL}" alt="${url.tags}" loading="lazy" width=300px/>
+    <div class="info">
+      <p class="info-item">
+        <b>Likes</b>${url.likes}
+      </p>
+      <p class="info-item">
+        <b>Views</b>${url.views}
+      </p>
+      <p class="info-item">
+        <b>Comments</b>${url.comments}
+      </p>
+      <p class="info-item">
+        <b>Downloads</b>${url.downloads}
+      </p>
+    </div>
+  </div>`;
 }
-
 export default {template};
