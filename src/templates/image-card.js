@@ -1,6 +1,7 @@
 function template(url) {
   return `<div class="gallery__item">
-    <img class="gallery__image" src="${url.webformatURL}" alt="${url.tags}" loading="lazy" width="250" height="150"/>
+    <a href="${url.largeImageURL}" title="${url.tags}">
+    <img class="gallery__image" src="${url.webformatURL}" alt="${url.tags}" loading="lazy" width="250" height="150"/></a>
     <div class="info">
       <p class="info-item">
         <b>Likes</b>${url.likes}
@@ -17,4 +18,5 @@ function template(url) {
     </div>
   </div>`;
 }
+
 export default {template};

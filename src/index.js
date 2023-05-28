@@ -1,7 +1,11 @@
 import Notiflix from 'notiflix';
+import SimpleLightbox from 'simplelightbox';
 import template from './templates/image-card.js';
 import PictureApiService from './partials/js/components/picture-service'
 import LoadMoreBtn from './partials/js/components/load-more-btn.js'
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
+
 
 
 const refs = {
@@ -87,5 +91,11 @@ function clearGallery() {
   refs.galleryList.innerHTML = "";
 }
 
+
+
 loadMoreBtn.refs.button.addEventListener('click', fetchPictures);
 refs.searchForm.addEventListener('submit', onSearch);
+
+const gallerySLBox = new SimpleLightbox('gallery a');
+gallerySLBox.refresh(); 
+
