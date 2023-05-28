@@ -96,6 +96,6 @@ function clearGallery() {
 loadMoreBtn.refs.button.addEventListener('click', fetchPictures);
 refs.searchForm.addEventListener('submit', onSearch);
 
-const gallerySLBox = new SimpleLightbox('gallery a');
+const gallerySLBox = new SimpleLightbox('.gallery a');
 gallerySLBox.refresh(); 
 
