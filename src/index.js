@@ -1,5 +1,6 @@
 import Notiflix from 'notiflix';
 import SimpleLightbox from 'simplelightbox';
+import _ from 'debounce';
 import template from './templates/image-card.js';
 import PictureApiService from './partials/js/components/picture-service'
 import LoadMoreBtn from './partials/js/components/load-more-btn.js'
@@ -94,6 +95,7 @@ function clearGallery() {
 function totalHitsCount(elementLength) {
   loadedPictuersInSession += elementLength;
   const totalPicturesLoaded = pictureApiService.totalHits;
+  
 
   if (loadedPictuersInSession >= totalPicturesLoaded) {
     loadMoreBtn.hide();
@@ -104,8 +106,10 @@ function totalHitsCount(elementLength) {
 }
 
 
-
 loadMoreBtn.refs.button.addEventListener('click', fetchPic);
-refs.searchForm.addEventListener('submit', onSearch);
+refs.searchForm.addEventListener(
+  'submit',
+  _(onSearch, 300, { trailing: false, leading: true })
+);
 
 
